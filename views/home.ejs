@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<link rel="stylesheet" type="text/css" href="css/anime.css">
+</head>
+<body>
+<div class="topnav">
+        <a href='/logout'>Logout</a>
+</div>
+<h1> Welcome to TypoSquatting</h1>
+<div class="box">
+<form action='' method='POST'>
+	<input type = "text" name="url" placeholder="URL"><br>
+<!--   	<h6 style="text-align: center;">Worker IPs</h6>
+	<textarea rows="10" cols="60" name="ips"></textarea><br> -->
+	<input type = "submit" value = "Submit">
+</form>
+
+</div>
+
+<!-- This part of the code displays the current queue-->
+<!-- JSON object should be of the form: jobs = [
+	{
+		url: the url that the user submitted to queue
+		status: the status of the job
+	}
+]-->
+
+<div class = "box">
+	<table>
+		<thead>
+			<th scope="col">Jobs</th>
+			<th scope="col">Status</th>
+		</thead>
+
+		<tbody>
+			<% jobs.forEach(function(jobs) { %>
+				<tr>
+					<td><%= jobs.url %></td>
+					<td><a href="/suspect?url=<%= jobs.url%>">View Current Results</a></td>
+				</tr>
+			<% }); %>
+		</tbody>
+	</table>
+</div>
+
+</body>
+</html>	

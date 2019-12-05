@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<!--This template takes a JSON object of form [
+    {
+        url: <name of suspect>,
+        screenshot: <path to screenshot>,
+        status: current status of crawl <maybe>
+    }
+    ]
+    and populates a table with the data inside the JSON object
+}-->
+
+<html>
+<head>
+    <link rel="stylesheet" href="css/anime.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script> -->
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script>
+            $(function() {
+                $('.pop').on('click', function() {
+                    $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+                    $('#imagemodal').modal('show');   
+                });		
+            });
+
+            // var socket = io.connect();
+            // // socket.connect("http://130.245.169.243:8080");
+
+            // socket.on('update', function(data) {
+            //     url = data.url;
+            //     path = data.screenshot;
+            //     html = "<tr> <td><a href='http://130.245.169.243/render_raw?suspect" 
+            //         + url + 
+            //         "'></td> <td><a href='#responsive' class='pop'> <img src='"
+            //         + path + 
+            //         "' style='width:100px; height:100px;'></td> </tr>"
+            //     $("#table_dat").append(html);
+            // });
+
+    </script>
+</head>
+<body>
+<!--    <div class="navbar navbar-inverse">-->
+    <div class="topnav">
+           <a class="back" href='/'>Back</a>
+            <a href='/logout'>Logout</a>
+   </div>
+    <table class="table">
+        <thead>
+            <th scope="col">Suspect HTML</th>
+            <th scope="col">Screenshot</th>
+        </thead>
+
+        <tbody id="table_dat">
+            <% suspects.forEach(function(suspects) { %>
+            <tr>
+                <td><a href="http://130.245.169.243/render_raw?suspect=<%= suspects.url %>"> <%= suspects.url %></td>
+                <td>
+                    <a href="#responsive" class="pop">
+                        <img src="<%= suspects.screenshot %>" style="width: 100px; height:100px;">
+                    </a>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">              
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <img src="" class="imagepreview" style="width: 100%;" >
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
