@@ -49,3 +49,6 @@ Due to file limits by Github, node_modules files are not provided; these depende
   * (3) Headless-Chrome-Crawler
       * npm install headless-chrome-crawler
       * export (required ENV var) = false for first time installation if Headless Chromium is never installed
+  * (4) HTML module
+      * npm install html
+      * Used to make html purty :)
